@@ -1,0 +1,22 @@
+
+
+-- For each of the tracks T3A and T3B there is at least one test case
+-- in which the track is occupied at least once.
+
+CTLSPEC EF T3A_occupied
+CTLSPEC EF T3B_occupied
+
+-- (a) The signals show either green or red.
+
+LTLSPEC G ((S1A_red | S1A_green) & !(S1A_red & S1A_green))
+LTLSPEC G ((S1B_red | S1B_green) & !(S1B_red & S1B_green))
+LTLSPEC G ((S2A_red | S2A_green) & !(S2A_red & S2A_green))
+LTLSPEC G ((S2B_red | S2B_green) & !(S2B_red & S2B_green))
+LTLSPEC G ((S3A_red | S3A_green) & !(S3A_red & S3A_green))
+LTLSPEC G ((S3B_red | S3B_green) & !(S3B_red & S3B_green))
+LTLSPEC G ((S4A_red | S4A_green) & !(S4A_red & S4A_green))
+LTLSPEC G ((S4B_red | S4B_green) & !(S4B_red & S4B_green))
+
+-- (b) The signals show red if passing the signal is unsafe due to occupied tracks or unlocked points.
+
+LTLSPEC G !(S2A_green & ((T2A_occupied & P1A_locked_straight) | (T3B_occupied & P1A_locked_curved & P2B_locked_curve) | (!T3B_ocuppied & (!P1A_locked_curved | !P2B_locked_curve))))
