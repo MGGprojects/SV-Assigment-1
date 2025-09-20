@@ -19,4 +19,69 @@ LTLSPEC G ((S4B_red | S4B_green) & !(S4B_red & S4B_green))
 
 -- (b) The signals show red if passing the signal is unsafe due to occupied tracks or unlocked points.
 
-LTLSPEC G !(S2A_green & ((T2A_occupied & P1A_locked_straight) | (T3B_occupied & P1A_locked_curved & P2B_locked_curve) | (!T3B_ocuppied & (!P1A_locked_curved | !P2B_locked_curve))))
+LTLSPEC G (
+    (
+        ((T2A_occupied | T3A_occupied) & P1A_locked_straight & P2B_locked_straight)
+      | ((T2A_occupied | T4B_occupied | T3B_occupied) & P1A_locked_curved & P2B_locked_curved)
+      | (P1A_locked_curved != P2B_locked_curved)
+      | (P1A_locked_straight != P2B_locked_straight)
+      | !(P1A_locked_straight | P1A_locked_curved)
+      | !(P2B_locked_straight | P2B_locked_curved)
+    ) -> S2A_red
+)
+
+LTLSPEC G (
+    (
+        (T4B_occupied & P2B_locked_straight & P1A_locked_straight)
+      | ((T4B_occupied | T2A_occupied | T1A_occupied) & P1A_locked_curved & P2B_locked_curved)
+      | (P2B_locked_curved != P1A_locked_curved)
+      | (P1A_locked_straight != P2B_locked_straight)
+      | !(P1A_locked_straight | P1A_locked_curved)
+      | !(P2B_locked_straight | P2B_locked_curved)
+    ) -> S4B_red
+)
+
+LTLSPEC G (
+    (
+        ((T2A_occupied | T1A_occupied) & P2B_locked_straight & P1A_locked_straight)
+      | (P1A_locked_straight != P2B_locked_straight)
+      | !(P1A_locked_straight | P1A_locked_curved)
+      | !(P2B_locked_straight | P2B_locked_curved)
+    ) -> S3A_red
+)
+
+LTLSPEC G (
+    (
+        (T4A_occupied & P2A_locked_straight & P1B_locked_straight)
+      | ((T4A_occupied | T2B_occupied | T1B_occupied) & P2A_locked_curved & P1B_locked_curved)
+      | (P2A_locked_curved != P1B_locked_curved)
+      | (P2A_locked_straight != P1B_locked_straight)
+      | !(P2A_locked_straight | P2A_locked_curved)
+      | !(P1B_locked_straight | P1B_locked_curved)
+    ) -> S4A_red
+)
+
+LTLSPEC G (
+    (
+        ((T2B_occupied | T3B_occupied) & P2A_locked_straight & P1B_locked_straight)
+      | ((T2B_occupied | T4A_occupied | T3A_occupied) & P2A_locked_curved & P1B_locked_curved)
+      | (P2A_locked_curved != P1B_locked_curved)
+      | (P2A_locked_straight != P1B_locked_straight)
+      | !(P2A_locked_straight | P2A_locked_curved)
+      | !(P1B_locked_straight | P1B_locked_curved)
+    ) -> S2B_red
+)
+
+LTLSPEC G (
+    (
+        ((T2B_occupied | T1B_occupied) & P2A_locked_straight & P1B_locked_straight)
+      | (P2A_locked_straight != P1B_locked_straight)
+      | !(P2A_locked_straight | P2A_locked_curved)
+      | !(P1B_locked_straight | P1B_locked_curved)
+    ) -> S3B_red
+)
+		
+
+
+
+
