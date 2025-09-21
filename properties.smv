@@ -138,4 +138,9 @@ LTLSPEC G (T4B_occupied -> (P1A_locked_curved & P2B_locked_curved))
 LTLSPEC G (T2B_occupied -> ((P2A_locked_straight & P1B_locked_straight) | (P2A_locked_curved & P1B_locked_curved)))
 LTLSPEC G (T4A_occupied -> (P2A_locked_curved & P1B_locked_curved))
 
+-- (j) If a train comes from an entry track, it will eventually reach an exit track.
+
+LTLSPEC G (T1A_occupied -> F (T1B_occupied))
+LTLSPEC G (T1B_occupied -> F (T1A_occupied))
+
 
