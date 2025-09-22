@@ -143,4 +143,3 @@ LTLSPEC G (T4A_occupied -> (P2A_locked_curved & P1B_locked_curved))
 LTLSPEC G (T1A_occupied -> F (T1B_occupied))
 LTLSPEC G (T1B_occupied -> F (T1A_occupied))
 
-
