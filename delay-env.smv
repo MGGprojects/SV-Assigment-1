@@ -1,3 +1,7 @@
+-- Members:
+-- Mauro Gómez Guillén
+-- Solomon Fanta
+
 MODULE Points(goal_straight,goal_curved)
   VAR
     status : {straight,moving,curved};

@@ -1,4 +1,6 @@
-
+-- Members:
+-- Mauro Gómez Guillén
+-- Solomon Fanta
 
 -- For each of the tracks T3A and T3B there is at least one test case
 -- in which the track is occupied at least once.
